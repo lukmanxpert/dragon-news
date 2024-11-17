@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEye } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
     return (
@@ -33,15 +34,15 @@ const NewsCard = ({ news }) => {
             <img
                 src={news.image_url}
                 alt={news.title}
-            className="w-full h-48 object-cover rounded-md mb-4"
+                className="w-full h-48 object-cover rounded-md mb-4"
             />
 
             {/* Details */}
             <p className="text-gray-600 text-sm mb-4">
                 {news.details.substring(0, 150)}...
-                <span className="text-blue-500 font-medium cursor-pointer">
+                <Link to={`/news/${news._id}`} className="text-blue-500 font-medium cursor-pointer">
                     Read More
-                </span>
+                </Link>
             </p>
 
             {/* Footer Section */}

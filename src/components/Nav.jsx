@@ -4,18 +4,12 @@ import userIcon from '../assets/user.png';
 import { AuthContext } from '../Context/Context';
 
 const Nav = () => {
-    const { user, setUser, userSignOut } = useContext(AuthContext)
-    const handleSignOut = () => {
-        userSignOut()
-            .then(res => {
-                setUser(res);
-            })
-            .catch(err => alert(err.code))
-    }
-    console.log(user);
+    const { user, userSignOut } = useContext(AuthContext)
     return (
         <div className="flex justify-between items-center p-4">
-            <div></div>
+            <div>
+                <p>{user && user.email ? user.email : ''}</p>
+            </div>
             <div>
                 <ul className="flex items-center gap-4">
                     <NavLink

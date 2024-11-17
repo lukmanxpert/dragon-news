@@ -7,6 +7,8 @@ import ErrorElement from "../components/ErrorElement";
 import CategoryNews from "../components/CategoryNews";
 import LoginPage from "../pages/LoginPage";
 import Register from "../pages/Register";
+import DetailsNews from "../pages/DetailsNews";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +38,13 @@ const router = createBrowserRouter([
                 element: <Career></Career>
             }
         ]
+    },
+    {
+        path: 'news/:id',
+        loader: ({ params }) => fetch(`https://openapi.programming-hero.com/api/news/${params.id}`),
+        element: <PrivateRoute>
+            <DetailsNews></DetailsNews>
+        </PrivateRoute>
     },
     {
         path: '/login',
