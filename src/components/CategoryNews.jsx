@@ -16,7 +16,7 @@ const CategoryNews = () => {
             <h1 className='text-xl font-semibold'>Dragon News Home</h1>
             <div className='flex flex-col gap-4'>
                 {
-                    news.map(n=> <NewsCard news={n}></NewsCard>)
+                    news.map((n, idx)=> <NewsCard key={idx} news={n}></NewsCard>)
                 }
             </div>
         </div>

@@ -5,6 +5,8 @@ import About from "../../About";
 import Career from "../pages/Career";
 import ErrorElement from "../components/ErrorElement";
 import CategoryNews from "../components/CategoryNews";
+import LoginPage from "../pages/LoginPage";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
     {
@@ -18,10 +20,10 @@ const router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home></Home>,
-                children : [
+                children: [
                     {
                         path: 'category/:id',
-                        element : <CategoryNews></CategoryNews>
+                        element: <CategoryNews></CategoryNews>
                     }
                 ]
             },
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
                 element: <Career></Career>
             }
         ]
+    },
+    {
+        path: '/login',
+        element: <LoginPage></LoginPage>
+    },
+    {
+        path: 'register',
+        element: <Register></Register>
     },
     {
         path: '*',
