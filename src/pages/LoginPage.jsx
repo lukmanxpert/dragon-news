@@ -1,22 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import { useContext } from "react";
 import { AuthContext } from "../Context/Context";
 const LoginPage = () => {
+    const location = useLocation()
+    const state = location.state;
     const navigate = useNavigate();
-    const {setUser} = useContext(AuthContext)
-    const {signInUser} = useContext(AuthContext)
+    const { setUser } = useContext(AuthContext)
+    const { signInUser } = useContext(AuthContext)
     const handleSignIn = (e) => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         signInUser(email, password)
-        .then(res => {
-            setUser(res.user)
-            navigate('/')
-        })
-        .catch(err => alert(err.code))
+            .then(res => {
+                setUser(res.user)
+                navigate(state ? state : '/')
+            })
+            .catch(err => alert(err.code))
     }
     return (
         <div>

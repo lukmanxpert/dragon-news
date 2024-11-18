@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Nav from '../components/Nav';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/Context';
 
 const Register = () => {
+    const [err, setErr] = useState("");
     const { signUpUser, setUser } = useContext(AuthContext)
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -11,9 +12,12 @@ const Register = () => {
         const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        if (name.length < 3) {
+            return setErr("Password must be at least 3 character")
+        }
         signUpUser(email, password)
             .then(res => setUser(res.user))
-            .catch(err => console.log("ERROR", err))
+            .catch(err => setErr(err.code))
     }
     return (
         <div>
@@ -43,6 +47,9 @@ const Register = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                        <label className="label">
+                            <p className="label-text-alt text-center text-red-700">{err && err}</p>
+                        </label>
                         <label className="label">
                             <p className="label-text-alt text-center">Already Have Account? <Link to='/login' className="text-red-600">Login</Link></p>
                         </label>
