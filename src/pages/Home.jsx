@@ -8,7 +8,7 @@ const Home = () => {
         fetch("https://openapi.programming-hero.com/api/news/categories")
             .then(res => res.json())
             .then(data => setCategories(data.data.news_category))
-            .catch(err => console.log("ERROR", err))
+            .catch(err => alert("ERROR", err))
     }, [])
     return (
         <div className='grid md:grid-cols-12  gap-6'>

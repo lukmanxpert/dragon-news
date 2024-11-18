@@ -5,7 +5,6 @@ import { AuthContext } from '../Context/Context';
 
 const Nav = () => {
     const { user, userSignOut } = useContext(AuthContext)
-    console.log(user);
     return (
         <div className="flex justify-between items-center p-4">
             <div>

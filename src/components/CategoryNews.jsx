@@ -9,7 +9,7 @@ const CategoryNews = () => {
         fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         .then(res => res.json())
         .then(data => setNews(data.data))
-        .catch(err => console.log("ERROR", err))
+        .catch(err => alert("ERROR", err))
     },[id])
     return (
         <div>
