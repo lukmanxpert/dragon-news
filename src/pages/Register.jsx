@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
 import Nav from '../components/Nav';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/Context';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [err, setErr] = useState("");
-    const { signUpUser, setUser } = useContext(AuthContext)
+    const { signUpUser, setUser, updateAuthProfile } = useContext(AuthContext)
     const handleSubmit = (e) => {
         e.preventDefault()
         const name = e.target.name.value;
@@ -16,7 +17,16 @@ const Register = () => {
             return setErr("Password must be at least 3 character")
         }
         signUpUser(email, password)
-            .then(res => setUser(res.user))
+            .then(res => {
+                setUser(res.user)
+                updateAuthProfile({ displayName: name, photoURL: photo })
+                    .then((res) => {
+                    })
+                    .catch(err => {
+                        alert("ERROR", err)
+                    })
+                navigate('/')
+            })
             .catch(err => setErr(err.code))
     }
     return (

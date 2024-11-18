@@ -5,6 +5,7 @@ import { AuthContext } from '../Context/Context';
 
 const Nav = () => {
     const { user, userSignOut } = useContext(AuthContext)
+    console.log(user);
     return (
         <div className="flex justify-between items-center p-4">
             <div>
@@ -39,7 +40,7 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="flex gap-4 items-center">
-                <img src={userIcon} alt="User Icon" className="w-8 h-8" />
+                <img src={user ? user.photoURL : userIcon} alt="User Icon" className="w-8 h-8 rounded-full" />
                 {
                     user ? <button onClick={userSignOut}>Sign Out</button> : <Link to='/login' className="text-white bg-gray-600 py-2 px-4 font-semibold">
                         Login
